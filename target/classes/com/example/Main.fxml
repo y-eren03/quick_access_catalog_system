@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.MainControl">
+
+    <Label text="ÜRÜN LİSTESİ" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-alignment: center;"/>
+
+    <!-- 1. Satır: Arama -->
+    <HBox spacing="10">
+        <TextField fx:id="aramaKodField" promptText="Kod"/>
+        <TextField fx:id="aramaAdField" promptText="Ad"/>
+        <TextField fx:id="aramaKategoriField" promptText="Kategori"/>
+        <TextField fx:id="aramaMarkaField" promptText="Marka"/>
+        <TextField fx:id="aramaFiyatField" promptText="Fiyat"/>
+        <Button text="ARA" fx:id="araButton" onAction="#urunAra" style="-fx-background-color: purple; -fx-text-fill: white; "/>
+    </HBox>
+
+    <!-- 2. Satır: Ekleme -->
+    <HBox spacing="10">
+        <TextField fx:id="ekleKodField" promptText="Kod"/>
+        <TextField fx:id="ekleAdField" promptText="Ad"/>
+        <TextField fx:id="ekleKategoriField" promptText="Kategori"/>
+        <TextField fx:id="ekleMarkaField" promptText="Marka"/>
+        <TextField fx:id="ekleFiyatField" promptText="Fiyat"/>
+        <Button text="EKLE" fx:id="ekleButton"  onAction="#urunEkle" style="-fx-background-color: lime; -fx-text-fill: black;"/>
+    </HBox>
+
+    <!-- Ürün Tablosu -->
+    <TableView fx:id="urunTablosu" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="kodKolon" text="KOD"/>
+            <TableColumn fx:id="adKolon" text="AD"/>
+            <TableColumn fx:id="kategoriKolon" text="KATEGORİ"/>
+            <TableColumn fx:id="markaKolon" text="MARKA"/>
+            <TableColumn fx:id="fiyatKolon" text="FİYAT"/>
+            <TableColumn fx:id="silKolon" text="SİL"/>
+        </columns>
+    </TableView>
+
+</VBox>
