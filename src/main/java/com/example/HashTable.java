@@ -94,17 +94,7 @@ public class HashTable {
         return urun;
     }
 
-    public void kategoriyeGoreListele(String kategori) {
-        for (int i = 0; i < size; i++) {
-            table[i].kategoriyeGoreListele(kategori);
-        }
-    }
 
-    public void markayaGoreListele(String marka) {
-        for (int i = 0; i < size; i++) {
-            table[i].markayaGoreListele(marka);
-        }
-    }
 
     public void fiyataGoreListele(Consumer<UrunNode> a) {
         bst.fiyataGoreListele(a);

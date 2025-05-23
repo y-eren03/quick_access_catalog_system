@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.MainControl">
+<VBox alignment="CENTER" style="-fx-padding: 0 10 0 10;" spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.MainControl">
 
     <Label text="ÜRÜN LİSTESİ" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-alignment: center;"/>
 
@@ -29,14 +29,14 @@
     </HBox>
 
     <!-- Ürün Tablosu -->
-    <TableView fx:id="urunTablosu" prefHeight="300">
-        <columns>
-            <TableColumn fx:id="kodKolon" text="KOD"/>
-            <TableColumn fx:id="adKolon" text="AD"/>
-            <TableColumn fx:id="kategoriKolon" text="KATEGORİ"/>
-            <TableColumn fx:id="markaKolon" text="MARKA"/>
-            <TableColumn fx:id="fiyatKolon" text="FİYAT"/>
-            <TableColumn fx:id="silKolon" text="SİL"/>
+    <TableView fx:id="urunTablosu"  prefHeight="330">
+        <columns >
+            <TableColumn fx:id="kodKolon" text="KOD" prefWidth="150"/>
+            <TableColumn fx:id="adKolon" text="AD" prefWidth="150"/>
+            <TableColumn fx:id="kategoriKolon" text="KATEGORİ" prefWidth="150"/>
+            <TableColumn fx:id="markaKolon" text="MARKA" prefWidth="150"/>
+            <TableColumn fx:id="fiyatKolon" text="FİYAT" prefWidth="150"/>
+            <TableColumn fx:id="silKolon" text="SİL" prefWidth="90" />
         </columns>
     </TableView>
 

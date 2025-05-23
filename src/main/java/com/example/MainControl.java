@@ -5,9 +5,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,11 +27,10 @@ public class MainControl {
     @FXML private TableColumn<UrunNode, Double> fiyatKolon;
     @FXML private TableColumn<UrunNode, Void> silKolon;
 
-    // Sayfalama bileşenleri
-    @FXML private Button ilkSayfa, oncekiSayfa, sonrakiSayfa, sonSayfa;
-    @FXML private Label sayfaNo;
+    
 
     private HashTable hashTable = new HashTable(10);
+    private boolean fiyatArtanMi = true;
 
     @FXML
     public void initialize() {
@@ -41,9 +40,34 @@ public class MainControl {
         kategoriKolon.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().kategori));
         markaKolon.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().marka));
         fiyatKolon.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().fiyat).asObject());
-
+        
         // Tabloya verileri yükle
         urunTablosu.setItems(hashTable.getObservableList());
+        
+        ortalaHucre(kodKolon);
+        ortalaHucre(adKolon);
+        ortalaHucre(kategoriKolon);
+        ortalaHucre(markaKolon);
+        ortalaHucre(fiyatKolon);
+
+        Button fiyatButton = new Button("FİYAT");
+        fiyatButton.setStyle("-fx-font-weight: bold; -fx-background-color: transparent; -fx-border-color: transparent;");
+
+    fiyatButton.setOnAction(e -> {
+        
+        ObservableList<UrunNode> siraliListe = FXCollections.observableArrayList();
+        if (fiyatArtanMi) {
+            hashTable.fiyataGoreListele(siraliListe::add);
+        } else {
+            hashTable.fiyataGoreTersListele(siraliListe::add);
+        }
+        urunTablosu.setItems(siraliListe);
+        fiyatArtanMi = !fiyatArtanMi;
+    });
+
+    
+        fiyatKolon.setText(""); 
+        fiyatKolon.setGraphic(fiyatButton);
 
         // Sil butonunu oluştur
         silKolon.setCellFactory(param -> new TableCell<>() {
@@ -65,11 +89,29 @@ public class MainControl {
                     setGraphic(null);
                 } else {
                     setGraphic(silButton);
+                    setAlignment(Pos.CENTER);
                 }
             }
         });
     }
 
+    private <T> void ortalaHucre(TableColumn<UrunNode, T> kolon) {
+    kolon.setCellFactory(tc -> new TableCell<>() {
+        @Override
+        protected void updateItem(T item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                setText(item.toString());
+                setAlignment(Pos.CENTER); // HÜCREYİ ORTALAR
+            }
+        }
+    });
+}
+
+   
     @FXML
     public void urunEkle() {
         String kod = ekleKodField.getText().trim();
@@ -106,6 +148,21 @@ public class MainControl {
 
         ObservableList<UrunNode> tumUrunler = hashTable.getObservableList();
         ObservableList<UrunNode> filtrelenmis = FXCollections.observableArrayList();
+
+         if (!kod.isEmpty() && ad.isEmpty() && kategori.isEmpty() && marka.isEmpty() && fiyatStr.isEmpty()) {
+        UrunNode bulunan = hashTable.urunAra(kod);
+        if (bulunan != null) {
+            filtrelenmis.add(bulunan);
+        } else {
+            gosterUyari("Kod ile eşleşen ürün bulunamadı.");
+        }
+        urunTablosu.setItems(filtrelenmis);
+        return;
+    }
+
+
+
+        
 
         for (UrunNode urun : tumUrunler) {
             boolean eslesiyor = true;
