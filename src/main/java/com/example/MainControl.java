@@ -24,6 +24,7 @@ public class MainControl {
 
     @FXML private StackPane ekleMenu;
     @FXML private Button eklemenubuton;
+    @FXML private Label ekleMenuKapatmaLabel;
 
     // Tablo ve kolonlar
     @FXML private TableView<UrunNode> urunTablosu;
@@ -98,6 +99,7 @@ public class MainControl {
         hashTable.urunEkle(kod, ad, kategori, marka, fiyat);
         urunTablosu.setItems(hashTable.getObservableList());
         temizleEkleAlanlari();
+        ekleMenuKapatma();
     }
 
     @FXML
@@ -142,6 +144,11 @@ public class MainControl {
     @FXML
     private void ekleMenuAc() {
         ekleMenu.setVisible(true);
+    }
+
+    @FXML
+    private void ekleMenuKapatma() {
+        ekleMenu.setVisible(false);
     }
 
     private void temizleEkleAlanlari() {

@@ -31,7 +31,7 @@
                 <TableColumn fx:id="kategoriKolon" prefWidth="150.0" text="Kategori" />
                 <TableColumn fx:id="markaKolon" prefWidth="150.0" text="Marka" />
                 <TableColumn fx:id="fiyatKolon" prefWidth="150.0" text="Fiyat" />
-                <TableColumn fx:id="silKolon" text="SİL" prefWidth="90" />
+                <TableColumn fx:id="silKolon" prefWidth="90" text="SİL" />
               </columns>
             </TableView>
             <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="874.0" style="-fx-padding: 20;">
@@ -58,7 +58,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px;" />
+                              <TextField fx:id="ekleKodField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
@@ -68,7 +68,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px;" />
+                              <TextField fx:id="ekleAdField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
@@ -78,7 +78,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px;" />
+                              <TextField fx:id="ekleKategoriField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
@@ -88,7 +88,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px;" />
+                              <TextField fx:id="ekleMarkaField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
@@ -98,11 +98,17 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px;" />
+                              <TextField fx:id="ekleFiyatField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
+                  <Label fx:id="ekleMenuKapatmaLabel" layoutX="278.0" layoutY="14.0" onMouseClicked="#ekleMenuKapatma" text="X" textFill="#7b7b7b" />
+                  <Button fx:id="ekleButton" layoutX="251.0" layoutY="261.0" mnemonicParsing="false" onAction="#urunEkle" style="-fx-background-color: rgb(80,80,80); -fx-background-radius: 20;" text="Ekle" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children></Pane>
          </children>
       </StackPane>
