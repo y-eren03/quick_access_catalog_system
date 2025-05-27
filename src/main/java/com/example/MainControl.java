@@ -180,6 +180,7 @@ public class MainControl {
         }
 
         hashTable.urunEkle(kod, ad, kategori, marka, fiyat);
+        prefixTrie.insert(new UrunNode(kod, ad, kategori, marka, fiyat));
         urunTablosu.setItems(hashTable.getObservableList());
         temizleEkleAlanlari();
         ekleMenuKapatma();
