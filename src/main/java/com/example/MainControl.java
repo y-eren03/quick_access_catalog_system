@@ -57,12 +57,18 @@ private boolean fiyatArtanMi = true;
     public void initialize() {
 
 
+
         if (!filtreKategoriBox.getItems().contains("Giyim")) {
+            filtreKategoriBox.getItems().add(0, "Kategori Seçiniz");
+            filtreKategoriBox.getSelectionModel().selectFirst();
             filtreKategoriBox.getItems().addAll(
         "Elektronik", "Ev Aletleri", "Giyim", "Kitap", "Spor", "Müzik", "Oyuncak", "Kozmetik"
         );
+        
             }
         if (!filtreMarkaBox.getItems().contains("Nike")) {
+            filtreMarkaBox.getItems().add(0, "Marka Seçiniz");
+            filtreMarkaBox.getSelectionModel().selectFirst();
             filtreMarkaBox.getItems().addAll(
         "Logitech", "Bosch", "Nike", "Penguin", "Adidas", "Yamaha", "Lego", "Loreal"
          )   ;
@@ -210,8 +216,71 @@ private boolean fiyatArtanMi = true;
         return;
     }
 
+
+    boolean kategoriSecili =  !seciliKategori.equals("Kategori Seçiniz");
+    boolean markaSecili =  !seciliMarka.equals("Marka Seçiniz");
+    boolean fiyatSecili = !(minStr.isEmpty() && maxStr.isEmpty());
+
+
+if (!kategoriSecili && !markaSecili && !fiyatSecili) {
+    gosterUyari("Lütfen filtreleme için en az bir alanı doldurun.");
+    return;
+}
+
     ObservableList<UrunNode> filtrelenmis = FXCollections.observableArrayList();
+
+    if (seciliKategori.equals("Kategori Seçiniz") && seciliMarka.equals("Marka Seçiniz") ){
     for (UrunNode urun : hashTable.getObservableList()) {
+
+        boolean eslesiyor = true;
+        
+        if (urun.fiyat < minFiyat || urun.fiyat > maxFiyat) eslesiyor = false;
+
+        if (eslesiyor) filtrelenmis.add(urun);
+    }
+
+    if (filtrelenmis.isEmpty()) {
+        gosterUyari("Filtreye uyan ürün bulunamadı.");
+    }
+
+
+    urunTablosu.setItems(filtrelenmis);
+} else if (seciliMarka.equals("Marka Seçiniz") ){
+    for (UrunNode urun : hashTable.getObservableList()) {
+
+        boolean eslesiyor = true;
+        if (seciliKategori != null && !urun.kategori.equals(seciliKategori)) eslesiyor = false;
+        if (urun.fiyat < minFiyat || urun.fiyat > maxFiyat) eslesiyor = false;
+
+        if (eslesiyor) filtrelenmis.add(urun);
+    }
+
+    if (filtrelenmis.isEmpty()) {
+        gosterUyari("Filtreye uyan ürün bulunamadı.");
+    }
+
+
+    urunTablosu.setItems(filtrelenmis);
+} else if (seciliKategori.equals("Kategori Seçiniz") ){
+    for (UrunNode urun : hashTable.getObservableList()) {
+
+        boolean eslesiyor = true;
+        if (seciliMarka != null && !urun.marka.equals(seciliMarka)) eslesiyor = false;
+        if (urun.fiyat < minFiyat || urun.fiyat > maxFiyat) eslesiyor = false;
+
+        if (eslesiyor) filtrelenmis.add(urun);
+    }
+
+    if (filtrelenmis.isEmpty()) {
+        gosterUyari("Filtreye uyan ürün bulunamadı.");
+    }
+
+
+    urunTablosu.setItems(filtrelenmis);
+}  else {
+
+    for (UrunNode urun : hashTable.getObservableList()) {
+
         boolean eslesiyor = true;
         if (seciliKategori != null && !urun.kategori.equals(seciliKategori)) eslesiyor = false;
         if (seciliMarka != null && !urun.marka.equals(seciliMarka)) eslesiyor = false;
@@ -223,8 +292,14 @@ private boolean fiyatArtanMi = true;
     if (filtrelenmis.isEmpty()) {
         gosterUyari("Filtreye uyan ürün bulunamadı.");
     }
+
     urunTablosu.setItems(filtrelenmis);
-}
+} 
+
+
+
+
+    }
 
 
     @FXML
