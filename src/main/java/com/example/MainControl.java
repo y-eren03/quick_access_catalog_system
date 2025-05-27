@@ -302,46 +302,7 @@ public class MainControl {
 
     }
 
-    @FXML
-    public void urunAra() {
-
-        String kod = aramaKodField.getText().trim();
-        String ad = aramaAdField.getText().trim();
-
-        ObservableList<UrunNode> filtrelenmis = FXCollections.observableArrayList();
-
-        if (!kod.isEmpty() && ad.isEmpty()) {
-            UrunNode bulunan = hashTable.urunAra(kod);
-            if (bulunan != null) {
-                filtrelenmis.add(bulunan);
-            } else {
-                gosterUyari("Kod ile eşleşen ürün bulunamadı.");
-            }
-            urunTablosu.setItems(filtrelenmis);
-            return;
-        }
-
-        ObservableList<UrunNode> tumUrunler = hashTable.getObservableList();
-
-        for (UrunNode urun : tumUrunler) {
-            boolean eslesiyor = true;
-
-            if (!kod.isEmpty() && !urun.urunKodu.equalsIgnoreCase(kod))
-                eslesiyor = false;
-            if (!ad.isEmpty() && !urun.urunAdi.toLowerCase().contains(ad.toLowerCase()))
-                eslesiyor = false;
-
-            if (eslesiyor)
-                filtrelenmis.add(urun);
-        }
-
-        if (filtrelenmis.isEmpty()) {
-            gosterUyari("Aranan kriterlere uygun ürün bulunamadı.");
-        }
-
-        urunTablosu.setItems(filtrelenmis);
-    }
-
+   
     @FXML
     public void prefixAra() {
 
@@ -351,10 +312,16 @@ public class MainControl {
         if (ad.isEmpty()) {
             filtrelenmis = hashTable.getObservableList();
             return;
-        }
+        } 
 
         filtrelenmis.addAll(prefixTrie.searchByPrefix(ad));
-        urunTablosu.setItems(filtrelenmis);
+
+        if (filtrelenmis.isEmpty()){
+            gosterUyari("Ad ile eşleşen ürün bulunamadı.");
+        } else {
+            urunTablosu.setItems(filtrelenmis);
+        }   
+        
 
     }
 
@@ -362,6 +329,12 @@ public class MainControl {
     public void kodlaAra() {
         String kod = aramaKodField.getText().trim();
         ObservableList<UrunNode> filtrelenmis = FXCollections.observableArrayList();
+
+
+        if (kod.isEmpty()) {
+            filtrelenmis = hashTable.getObservableList();
+            return;
+        } 
 
         UrunNode bulunan = hashTable.urunAra(kod);
 

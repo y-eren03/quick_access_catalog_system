@@ -39,7 +39,8 @@
         </left>
 
         <center>
-            <VBox spacing="10" style="-fx-padding: 10;">
+
+          <VBox spacing="10" style="-fx-padding: 10;">
                 <!-- Arama Alanı -->
                 <HBox alignment="CENTER_RIGHT" spacing="10">
                     <TextField fx:id="aramaKodField" promptText="Kod Ara" styleClass="arama-field" />
