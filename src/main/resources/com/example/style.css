@@ -1,18 +1,144 @@
-.table-view .column-header,
-.table-view .column-header .filler,
-.table-view .column-header-background .filler {
-    -fx-background-color: rgb(40, 40, 40);
+/* Tablo çizgileri ve yazı stilleri */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #444;
+    -fx-border-width: 1px;
+    -fx-table-cell-border-color: #444;
+    -fx-padding: 5;
+    -fx-text-fill: white;
+    -fx-control-inner-background: #1e1e1e;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2c2c2c;
+}
+
+.table-view .column-header, 
+.table-view .filler {
+    -fx-size: 35px;
+    -fx-border-color: #444;
+    -fx-border-width: 0 0 1 1;
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-border-color: #333;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: white;
 }
 
 .table-view .column-header .label {
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
-.table-cell {
+.table-view .table-row-cell:filled:selected, 
+.table-view .table-row-cell:focused:selected {
+    -fx-background-color: #3c3c3c;
     -fx-text-fill: white;
 }
 
-.table-row-cell {
-    -fx-background-color: rgb(40, 40, 40);
+/* Scroll bar renk ayarları */
+.scroll-bar:vertical, 
+.scroll-bar:horizontal {
+    -fx-background-color: #2e2e2e;
+}
 
+.scroll-bar .thumb {
+    -fx-background-color: #888;
+    -fx-background-insets: 2;
+    -fx-background-radius: 5px;
+}
+
+
+.arama-field {
+    -fx-background-color: rgb(50,50,50);
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 150px;
+}
+
+.fiyat-field {
+    -fx-background-color: rgb(50,50,50);
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: white;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 50px;
+}
+
+.ara-buton {
+    -fx-background-color: rgb(80,80,80);
+    -fx-background-radius: 14;
+    -fx-text-fill: white;
+}
+
+
+
+.choice-box {
+    -fx-background-color: rgb(50, 50, 50);
+    -fx-background-radius: 10;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-effect: null;
+    -fx-padding: 5 10 5 10;
+    -fx-text-fill: white;
+    -fx-pref-height: 35px;
+    -fx-pref-width: 60px;
+}
+
+
+.choice-box .label {
+    -fx-text-fill: white;
+}
+
+.choice-box:focused {
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+.choice-box .context-menu {
+    -fx-background-color: #2e2e2e;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+
+
+.choice-box .menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+
+.choice-box .arrow {
+    -fx-background-color: white;
+}
+
+
+
+.baslik-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.baslik-button:hover {
+    -fx-underline: true;
 }

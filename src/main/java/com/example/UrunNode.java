@@ -9,7 +9,7 @@ public class UrunNode {
     
     UrunNode next;
 
-    UrunNode left; // BST için
+    UrunNode left;
     UrunNode right;
     int height = 1;
 

@@ -19,17 +19,18 @@ public class HashTable {
             table[i] = new BagliListe();
         }
 
-        // Başlangıçta 10 örnek ürün ekle
-        urunEkle("A01", "Mouse", "Elektronik", "Logitech", 249.99);
-        urunEkle("B02", "Klavye", "Elektronik", "Corsair", 499.99);
-        urunEkle("C03", "Monitör", "Elektronik", "Samsung", 1999.99);
-        urunEkle("D04", "Kulaklık", "Elektronik", "Sony", 899.50);
-        urunEkle("E05", "SSD", "Depolama", "Kingston", 1299.00);
-        urunEkle("F06", "Harddisk", "Depolama", "WD", 749.49);
-        urunEkle("G07", "Laptop", "Bilgisayar", "HP", 13999.90);
-        urunEkle("H08", "Tablet", "Mobil", "Apple", 10999.00);
-        urunEkle("I09", "Yazıcı", "Ofis", "Canon", 1599.99);
-        urunEkle("J10", "Router", "Ağ", "TP-Link", 549.00);
+
+
+        urunEkle("X01", "Kablosuz Mouse", "Elektronik", "Logitech", 319.90);
+        urunEkle("X02", "Çamaşır Makinesi", "Ev Aletleri", "Bosch", 7299.00);
+        urunEkle("X03", "Spor Ayakkabı", "Giyim", "Nike", 1199.50);
+         urunEkle("X04", "Roman Kitabı", "Kitap", "Penguin", 89.99);
+         urunEkle("X05", "Futbol Topu", "Spor", "Adidas", 249.00);
+        urunEkle("X06", "Bluetooth Hoparlör", "Elektronik", "Yamaha", 799.90);
+        urunEkle("X07", "Yapboz Seti", "Oyuncak", "Lego", 349.99);
+        urunEkle("X08", "Ruj", "Kozmetik", "Loreal", 149.90);
+        urunEkle("X09", "Elektrikli Süpürge", "Ev Aletleri", "Bosch", 3899.00);
+        urunEkle("X10", "Kulak Üstü Kulaklık", "Elektronik", "Sony", 1199.00);
     }
 
     private int hash(String urunKodu) {

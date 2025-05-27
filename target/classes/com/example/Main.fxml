@@ -1,116 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MainControl">
-   <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="874.0" style="-fx-background-color: rgb(30,30,30);" stylesheets="@style.css">
-         <children>
-            <StackPane prefHeight="100.0" prefWidth="874.0">
-               <children>
-                  <TextField alignment="TOP_LEFT" maxWidth="200.0" prefHeight="200.0" prefWidth="52.0" promptText="Ara" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-pref-height: 40px; -fx-pref-width: 300px; -fx-text-fill: white;">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </StackPane>
-            <TableView fx:id="urunTablosu" editable="true" prefHeight="323.0" prefWidth="874.0">
-              <columns>
-                <TableColumn fx:id="kodKolon" prefWidth="150.0" text="Kod" />
-                <TableColumn fx:id="adKolon" prefWidth="150.0" text="Ad" />
-                <TableColumn fx:id="kategoriKolon" prefWidth="150.0" text="Kategori" />
-                <TableColumn fx:id="markaKolon" prefWidth="150.0" text="Marka" />
-                <TableColumn fx:id="fiyatKolon" prefWidth="150.0" text="Fiyat" />
-                <TableColumn fx:id="silKolon" prefWidth="90" text="SİL" />
-              </columns>
-            </TableView>
-            <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="874.0" style="-fx-padding: 20;">
-               <children>
-                  <Button fx:id="eklemenubuton" mnemonicParsing="false" onAction="#ekleMenuAc" style="-fx-background-color: rgb(80,80,80); -fx-background-radius: 14;" text="Ürün Ekle" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
+<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.MainControl"
+           prefWidth="874" prefHeight="480" style="-fx-background-color: rgb(30,30,30);"
+           stylesheets="@style.css">
+
+    <BorderPane>
+
+      <top>
+    <HBox alignment="CENTER" style="-fx-padding: 10;">
+        <Button text="Katalog Sistemi"
+                fx:id="katalogBaslik"
+                onAction="#initialize"
+                styleClass="baslik-button"
+                />
+          </HBox>
+      </top>   
+
+        <left>
+            <VBox spacing="10" style="-fx-padding: 10;" alignment="CENTER">
+                <Label text="FİLTRELE" textFill="WHITE" style="-fx-font-weight: bold;" />
+                <Label text="Kategori" textFill="WHITE"  />
+                <ChoiceBox fx:id="filtreKategoriBox" styleClass="custom-choice-box" />
+                <Label text="Marka" textFill="WHITE" />
+                <ChoiceBox fx:id="filtreMarkaBox" styleClass="custom-choice-box" />
+                <Label text="Fiyat Aralığı" textFill="WHITE" />
+                <HBox spacing="5">
+                    <TextField fx:id="minFiyatField" promptText="Min" styleClass="fiyat-field" prefWidth="10" />
+                    <TextField fx:id="maxFiyatField" promptText="Max" styleClass="fiyat-field" prefWidth="10" />
+                </HBox>
+                <Button text="Filtrele" onAction="#filtreleUrunler" styleClass="ara-buton" />
+            </VBox>
+        </left>
+
+        <center>
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <!-- Arama Alanı -->
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <TextField fx:id="aramaKodField" promptText="Kod Ara" styleClass="arama-field" />
+                    <TextField fx:id="aramaAdField" promptText="Ad Ara" styleClass="arama-field" />
+                    <Button text="Ara" onAction="#urunAra" styleClass="ara-buton" />
+                </HBox>
+
+                <!-- Tablo -->
+                <TableView fx:id="urunTablosu" editable="true" prefHeight="323.0">
+                    <columns>
+                        <TableColumn fx:id="kodKolon" prefWidth="150.0" text="Kod" />
+                        <TableColumn fx:id="adKolon" prefWidth="150.0" text="Ad" />
+                        <TableColumn fx:id="kategoriKolon" prefWidth="150.0" text="Kategori" />
+                        <TableColumn fx:id="markaKolon" prefWidth="150.0" text="Marka" />
+                        <TableColumn fx:id="fiyatKolon" prefWidth="150.0" text="Fiyat" />
+                        <TableColumn fx:id="silKolon" prefWidth="98" text="SİL" />
+                    </columns>
+                </TableView>
+
+                <!-- Ekle Butonu -->
+                <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+                    <Button fx:id="eklemenubuton" onAction="#ekleMenuAc"
+                            style="-fx-background-color: rgb(80,80,80); -fx-background-radius: 14;" 
+                            text="Ürün Ekle" textFill="WHITE">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Button>
+                </HBox>
+            </VBox>
+        </center>
+
+    </BorderPane>
+
+   
+    <StackPane fx:id="ekleMenu"
+               alignment="CENTER"
+               style="-fx-background-color: rgba(0, 0, 0, 0.5);"
+               visible="false"
+               pickOnBounds="true">
+
+        <VBox spacing="10"
+              style="-fx-background-color: #2b2b2b; -fx-background-radius: 20; -fx-padding: 20;"
+              alignment="CENTER"
+              maxWidth="300"
+              maxHeight="350.0">
+
+            <HBox alignment="TOP_RIGHT">
+                <Label text="X" onMouseClicked="#ekleMenuKapatma"
+                       style="-fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
             </HBox>
-         </children>
-      </VBox>
-      <StackPane fx:id="ekleMenu" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(0,0,0,0.5);" visible="false">
-         <children>
-            <Pane maxHeight="300.0" maxWidth="300.0" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: rgb(40,40,40); -fx-background-radius: 20;">
-               <children>
-                  <VBox layoutX="10.0" layoutY="51.0" prefHeight="199.0" prefWidth="280.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
-                           <children>
-                              <Label minWidth="50.0" text="Kod" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="ekleKodField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
-                           <children>
-                              <Label minWidth="50.0" text="Ad" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="ekleAdField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
-                           <children>
-                              <Label minWidth="50.0" text="Kategori" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="ekleKategoriField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
-                           <children>
-                              <Label minWidth="50.0" text="Marka" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="ekleMarkaField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="280.0">
-                           <children>
-                              <Label minWidth="50.0" text="Fiyat" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="ekleFiyatField" style="-fx-background-color: rgb(50,50,50); -fx-border-width: 2px; -fx-background-radius: 20px; -fx-text-fill: white;" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Label fx:id="ekleMenuKapatmaLabel" layoutX="278.0" layoutY="14.0" onMouseClicked="#ekleMenuKapatma" text="X" textFill="#7b7b7b" />
-                  <Button fx:id="ekleButton" layoutX="251.0" layoutY="261.0" mnemonicParsing="false" onAction="#urunEkle" style="-fx-background-color: rgb(80,80,80); -fx-background-radius: 20;" text="Ekle" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children></Pane>
-         </children>
-      </StackPane>
-   </children>
+
+            <Label text="Kod" style="-fx-text-fill: white;" />
+            <TextField fx:id="ekleKodField" styleClass="arama-field" />
+
+            <Label text="Ad" style="-fx-text-fill: white;" />
+            <TextField fx:id="ekleAdField" styleClass="arama-field" />
+
+            <Label text="Kategori" style="-fx-text-fill: white;" />
+            <TextField fx:id="ekleKategoriField"  styleClass="arama-field"/>
+
+            <Label text="Marka" style="-fx-text-fill: white;" />
+            <TextField fx:id="ekleMarkaField" styleClass="arama-field" />
+
+            <Label text="Fiyat" style="-fx-text-fill: white;" />
+            <TextField fx:id="ekleFiyatField" styleClass="arama-field" />
+
+            <Button text="Ekle" onAction="#urunEkle"
+                    styleClass="ara-buton" />
+        </VBox>
+    </StackPane>
+
 </StackPane>
