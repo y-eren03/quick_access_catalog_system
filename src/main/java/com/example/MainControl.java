@@ -56,14 +56,19 @@ private boolean fiyatArtanMi = true;
     @FXML
     public void initialize() {
 
-        filtreKategoriBox.getItems().addAll(
+
+        if (!filtreKategoriBox.getItems().contains("Giyim")) {
+            filtreKategoriBox.getItems().addAll(
         "Elektronik", "Ev Aletleri", "Giyim", "Kitap", "Spor", "Müzik", "Oyuncak", "Kozmetik"
         );
-
-        filtreMarkaBox.getItems().addAll(
+            }
+        if (!filtreMarkaBox.getItems().contains("Nike")) {
+            filtreMarkaBox.getItems().addAll(
         "Logitech", "Bosch", "Nike", "Penguin", "Adidas", "Yamaha", "Lego", "Loreal"
          )   ;
+            }
 
+        
         
         kodKolon.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().urunKodu));
         adKolon.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().urunAdi));
