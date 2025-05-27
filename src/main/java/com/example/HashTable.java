@@ -24,8 +24,8 @@ public class HashTable {
         urunEkle("X01", "Kablosuz Mouse", "Elektronik", "Logitech", 319.90);
         urunEkle("X02", "Çamaşır Makinesi", "Ev Aletleri", "Bosch", 7299.00);
         urunEkle("X03", "Spor Ayakkabı", "Giyim", "Nike", 1199.50);
-         urunEkle("X04", "Roman Kitabı", "Kitap", "Penguin", 89.99);
-         urunEkle("X05", "Futbol Topu", "Spor", "Adidas", 249.00);
+        urunEkle("X04", "Roman Kitabı", "Kitap", "Penguin", 89.99);
+        urunEkle("X05", "Futbol Topu", "Spor", "Adidas", 249.00);
         urunEkle("X06", "Bluetooth Hoparlör", "Elektronik", "Yamaha", 799.90);
         urunEkle("X07", "Yapboz Seti", "Oyuncak", "Lego", 349.99);
         urunEkle("X08", "Ruj", "Kozmetik", "Loreal", 149.90);
